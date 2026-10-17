@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CoachRouteImport } from './routes/coach'
+import { Route as LogRouteImport } from './routes/log'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as VitalsRouteImport } from './routes/vitals'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoachRoute = CoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogRoute = LogRouteImport.update({
+  id: '/log',
+  path: '/log',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VitalsRoute = VitalsRouteImport.update({
+  id: '/vitals',
+  path: '/vitals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/coach': typeof CoachRoute
+  '/log': typeof LogRoute
+  '/profile': typeof ProfileRoute
+  '/vitals': typeof VitalsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/coach': typeof CoachRoute
+  '/log': typeof LogRoute
+  '/profile': typeof ProfileRoute
+  '/vitals': typeof VitalsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/coach': typeof CoachRoute
+  '/log': typeof LogRoute
+  '/profile': typeof ProfileRoute
+  '/vitals': typeof VitalsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/coach' | '/log' | '/profile' | '/vitals'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/coach' | '/log' | '/profile' | '/vitals'
+  id: '__root__' | '/' | '/coach' | '/log' | '/profile' | '/vitals'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CoachRoute: typeof CoachRoute
+  LogRoute: typeof LogRoute
+  ProfileRoute: typeof ProfileRoute
+  VitalsRoute: typeof VitalsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coach': {
+      id: '/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof CoachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/log': {
+      id: '/log'
+      path: '/log'
+      fullPath: '/log'
+      preLoaderRoute: typeof LogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vitals': {
+      id: '/vitals'
+      path: '/vitals'
+      fullPath: '/vitals'
+      preLoaderRoute: typeof VitalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CoachRoute: CoachRoute,
+  LogRoute: LogRoute,
+  ProfileRoute: ProfileRoute,
+  VitalsRoute: VitalsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
