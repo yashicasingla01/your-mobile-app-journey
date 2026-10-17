@@ -8,7 +8,11 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+
+import { supabase } from "@/integrations/supabase/client";
+import type { User } from "@supabase/supabase-js";
+import { AccountContext } from "@/features/account/auth-state";
 
 import appCss from "../styles.css?url";
 import { MyVitaShell } from "@/components/myvita";
@@ -119,11 +123,32 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    let active = true;
+    void supabase.auth.getUser().then(({ data }) => { if (active) setUser(data.user); });
+    const { data: subscription } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event !== 'SIGNED_IN' && event !== 'SIGNED_OUT' && event !== 'USER_UPDATED') return;
+      setUser(session?.user ?? null);
+      void router.invalidate();
+      if (event !== 'SIGNED_OUT') void queryClient.invalidateQueries();
+    });
+    return () => { active = false; subscription.subscription.unsubscribe(); };
+  }, [router, queryClient]);
+  async function signOut() {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    const { error } = await supabase.auth.signOut();
+    if (error) throw new Error('Could not sign out. Please try again.');
+    setUser(null);
+    await router.navigate({ to: '/auth', replace: true });
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <MyVitaShell><Outlet /></MyVitaShell>
+      <AccountContext.Provider value={{ user, signOut }}><MyVitaShell><Outlet /></MyVitaShell></AccountContext.Provider>
     </QueryClientProvider>
   );
 }

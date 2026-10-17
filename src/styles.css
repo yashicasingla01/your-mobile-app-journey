@@ -226,3 +226,63 @@ h1,h2,.brand { font-family: var(--font-display); }
 @media (min-width: 768px) { .app-shell { padding-top: 16px; } .welcome-space { padding-top: 50px; padding-bottom: 30px; } .welcome-art { margin-bottom: 30px; } }
 @media (max-width: 360px) { .app-shell { padding-left: 20px; padding-right: 20px; } .welcome-eyebrow { letter-spacing: 1px; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation: none !important; transition: none !important; } }
+
+.account-page { padding: 34px 0 30px; max-width: 500px; margin: auto; }
+.account-page h1 { font-size: 28px; font-weight: 800; line-height: 1.35; }
+.account-logo { color: var(--primary); width: 58px; height: 58px; margin-bottom: 22px; }
+.account-subtitle { color: var(--muted-foreground); font-size: 15px; margin: 12px 0 26px; line-height: 1.7; }
+.account-stack { display: flex; flex-direction: column; gap: 20px; }
+.account-stack > button, .account-page > button, .google-button { min-height: 48px; font-size: 15px; border-radius: 12px; }
+.auth-modes { display: grid; grid-template-columns: 1fr 1fr; padding: 5px; gap: 4px; border: 1px solid var(--border); border-radius: 12px; margin: 24px 0; }
+.auth-modes button { height: 40px; border-radius: 8px; }
+.google-button { width: 100%; }
+.google-g { font-weight: 800; font-family: var(--font-display); color: var(--teal-ink); font-size: 21px; }
+.auth-divider { display: flex; gap: 16px; align-items: center; color: var(--muted-foreground); font-size: 12px; margin: 24px 0; }
+.auth-divider::before,.auth-divider::after { content: ''; height: 1px; background: var(--border); flex: 1; }
+.field { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 500; min-width: 0; }
+.field input,.field select { height: 49px; width: 100%; padding: 10px 13px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; color: var(--foreground); font-size: 16px; font-weight: 400; outline-color: var(--primary); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-error { color: var(--destructive); font-size: 14px; margin-top: 16px; line-height: 1.6; overflow-wrap: anywhere; }
+.form-success { color: var(--teal-ink); padding: 15px; background: var(--welcome); border-radius: 8px; font-size: 14px; margin-top: 16px; }
+.privacy-caption { color: var(--muted-foreground); display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 12px; margin-top: 27px; line-height: 1.6; }
+.privacy-caption svg { color: var(--teal-ink); flex-shrink: 0; }
+.onboarding-progress { display: flex; gap: 7px; margin-bottom: 26px; }
+.onboarding-progress span { height: 4px; width: 44px; background: var(--border); border-radius: 4px; }
+.onboarding-progress .progress-current { background: var(--primary); }
+.consent-points { display: flex; flex-direction: column; gap: 28px; margin: 30px 0; }
+.consent-points > div { display: flex; gap: 16px; align-items: flex-start; }
+.consent-points svg { color: var(--teal-ink); flex-shrink: 0; margin-top: 3px; width: 23px; }
+.consent-points p { color: var(--muted-foreground); font-size: 14px; line-height: 1.65; }
+.consent-points strong { color: var(--foreground); display: block; font-size: 16px; margin-bottom: 4px; }
+.consent-disclaimer { background: var(--welcome); color: var(--teal-ink); font-size: 14px; padding: 18px; border-radius: 12px; line-height: 1.6; }
+.consent-detail { color: var(--muted-foreground); font-size: 12px; line-height: 1.7; margin: 17px 0; }
+.consent-checkbox { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.6; margin: 26px 0; cursor: pointer; }
+input[type=checkbox] { width: 19px; height: 19px; flex-shrink: 0; accent-color: var(--primary); margin-top: 2px; }
+.back-consent { margin-bottom: 20px; color: var(--muted-foreground); }
+.bmi-result { display: flex; align-items: center; gap: 24px; background: var(--welcome); border-radius: 12px; padding: 20px; }
+.bmi-result div span { display: block; font-size: 12px; color: var(--teal-ink); }
+.bmi-result strong { display: block; font-family: var(--font-display); font-size: 32px; font-weight: 800; }
+.bmi-result p { font-size: 15px; color: var(--teal-ink); }
+.bmi-result small { display: block; font-size: 11px; color: var(--muted-foreground); margin-top: 6px; line-height: 1.5; }
+.selection-group { border: 0; padding: 0; }
+.selection-group legend { font-weight: 500; font-size: 14px; margin-bottom: 12px; }
+.selection-group legend span { color: var(--muted-foreground); font-weight: 400; }
+.checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.checkbox-grid label { display: flex; gap: 10px; align-items: center; padding: 9px 0; font-size: 14px; text-transform: capitalize; cursor: pointer; }
+.profile-title { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.profile-identity { display: flex; gap: 16px; align-items: center; margin: 30px 0; }
+.profile-avatar { width: 62px; height: 62px; border-radius: 50%; background: var(--welcome); color: var(--teal-ink); display: grid; place-items: center; flex-shrink: 0; }
+.profile-identity h2 { font-weight: 700; font-size: 21px; overflow-wrap: anywhere; }
+.profile-identity p { color: var(--muted-foreground); font-size: 13px; overflow-wrap: anywhere; }
+.profile-form { margin-top: 24px; }
+.profile-details { margin-top: 25px; }
+.profile-details div { display: flex; justify-content: space-between; gap: 22px; border-bottom: 1px solid var(--border); padding: 16px 0; font-size: 14px; }
+.profile-details dt { color: var(--muted-foreground); flex-shrink: 0; }
+.profile-details dd { text-transform: capitalize; text-align: right; overflow-wrap: anywhere; }
+.profile-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; }
+.profile-actions button { height: 47px; border-radius: 10px; }
+.modal-backdrop { position: fixed; inset: 0; background: color-mix(in oklch,var(--foreground) 35%,transparent); display: grid; place-items: center; z-index: 60; padding: 24px; }
+.delete-dialog { background: var(--card); border-radius: 16px; padding: 26px; max-width: 400px; width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.delete-dialog h2 { font-size: 22px; font-weight: 700; }
+.delete-dialog p { font-size: 14px; color: var(--muted-foreground); line-height: 1.65; }
+.delete-dialog button { height: 44px; }

@@ -11,5 +11,9 @@
 
 ## App architecture
 - Keep shared MyVita branding, theme state, splash, footer, and bottom navigation in the root shell so every tab has consistent framing.
-- Each bottom tab is a separate TanStack file route using a shared placeholder view and its own head metadata; this keeps navigation and page identity real while features remain intentionally empty.
+- Keep all five tab pages and onboarding under the client-only _authenticated gate, with the gated index as the sole / claimant; public /auth handles email confirmations and OAuth callbacks before entering the gate.
+- All private profile operations use authenticated server functions and owner-scoped RLS, never service-role reads; server validation mirrors form validation.
+- Register the bearer attacher in start.ts and keep one root auth-state subscriber; clear protected query caches before sign-out.
+- Deleting health data removes the profile and consent record, not the Supabase Auth account; return to onboarding and require renewed consent.
+- BMI uses unrounded kg/m² for adult category boundaries and displays age-specific assessment guidance below age 20, since adult categories are inappropriate for children.
 - Read theme and splash browser storage only after hydration to preserve server-rendered consistency.

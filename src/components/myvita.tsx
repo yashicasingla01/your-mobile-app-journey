@@ -1,6 +1,7 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { Activity, ArrowUpRight, Heart, House, Leaf, MessageCircle, Moon, NotebookPen, Sparkles, Sun, UserRound } from 'lucide-react';
+import { useAccount } from '@/features/account/auth-state';
 import { Button } from '@/components/ui/button';
 
 const tabs = [
@@ -19,6 +20,7 @@ export function MyVitaShell({ children }: { children: React.ReactNode }) {
   const [dark, setDark] = useState(false);
   const [splash, setSplash] = useState(false);
   const { pathname } = useLocation();
+  const { user } = useAccount();
   useEffect(() => {
     const saved = localStorage.getItem('myvita-theme');
     setDark(saved === 'dark');
@@ -38,7 +40,7 @@ export function MyVitaShell({ children }: { children: React.ReactNode }) {
     </header>
     {children}
     <footer className="app-footer"><span className="footer-mark"><Heart size={12}/> A little care, every day.</span><p>MyVita gives guidance, not medical diagnosis.</p></footer>
-    <nav className="bottom-nav" aria-label="Main navigation">{tabs.map(({ label, to, icon: Icon }) => <Button key={to} asChild variant="ghost" className={`nav-tab ${pathname === to ? 'nav-active' : ''}`}><Link to={to} aria-current={pathname === to ? 'page' : undefined}><span className="nav-icon"><Icon size={22} strokeWidth={pathname === to ? 2.3 : 1.7}/></span><span>{label}</span></Link></Button>)}</nav>
+    {user && pathname !== '/onboarding' && pathname !== '/auth' && <nav className="bottom-nav" aria-label="Main navigation">{tabs.map(({ label, to, icon: Icon }) => <Button key={to} asChild variant="ghost" className={`nav-tab ${pathname === to ? 'nav-active' : ''}`}><Link to={to} aria-current={pathname === to ? 'page' : undefined}><span className="nav-icon"><Icon size={22} strokeWidth={pathname === to ? 2.3 : 1.7}/></span><span>{label}</span></Link></Button>)}</nav>}
     {splash && <div className="splash" role="status" aria-label="Welcome to MyVita"><div className="splash-brand"><HeartLogo className="splash-heart"/><h1>MyVita<span>.</span></h1><p>Your health, understood.</p><span className="splash-byline">BY YASHICA SINGLA</span></div><p className="splash-disclaimer">MyVita gives guidance, not medical diagnosis.</p></div>}
   </div>;
 }

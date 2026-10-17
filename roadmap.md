@@ -1,4 +1,8 @@
 # MyVita
+- [ ] Quick daily check-in form, private daily_logs, one entry per local date with same-day editing
+- [ ] Streak, logged-today celebration, and seven-day history
+- [ ] Delete all saved health data, including daily logs, from Profile
+- [ ] Verify daily check-in rules and available user flows
 - [ ] Email and Google accounts with sign-out
 - [ ] Required consent and first-login health profile onboarding
 - [ ] Private profiles storage, BMI, profile editing and deletion
