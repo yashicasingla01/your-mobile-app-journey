@@ -14,6 +14,68 @@ export type Database = {
   }
   public: {
     Tables: {
+      daily_logs: {
+        Row: {
+          created_at: string
+          exercise_minutes: number
+          id: string
+          log_date: string
+          meals: string
+          mood: number
+          sleep_hours: number
+          sleep_quality: number
+          steps: number
+          stress_level: number
+          sugar_junk: boolean
+          time_zone: string
+          updated_at: string
+          user_id: string
+          water_glasses: number
+        }
+        Insert: {
+          created_at?: string
+          exercise_minutes: number
+          id?: string
+          log_date: string
+          meals: string
+          mood: number
+          sleep_hours: number
+          sleep_quality: number
+          steps: number
+          stress_level: number
+          sugar_junk: boolean
+          time_zone: string
+          updated_at?: string
+          user_id: string
+          water_glasses: number
+        }
+        Update: {
+          created_at?: string
+          exercise_minutes?: number
+          id?: string
+          log_date?: string
+          meals?: string
+          mood?: number
+          sleep_hours?: number
+          sleep_quality?: number
+          steps?: number
+          stress_level?: number
+          sugar_junk?: boolean
+          time_zone?: string
+          updated_at?: string
+          user_id?: string
+          water_glasses?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_logs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           activity_level: string | null

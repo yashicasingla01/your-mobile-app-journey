@@ -1,4 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PlaceholderPage, pageHead } from '@/components/myvita';
-export const Route = createFileRoute('/_authenticated/log')({ head: () => pageHead('Log'), component: Page });
-function Page() { return <PlaceholderPage page="Log"/>; }
+import { pageHead } from '@/components/myvita';
+import { DailyCheckIn } from '@/features/log/daily-check-in';
+export const Route = createFileRoute('/_authenticated/log')({head:()=>pageHead('Daily check-in'),component:DailyCheckIn});
