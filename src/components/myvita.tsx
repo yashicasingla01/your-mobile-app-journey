@@ -27,6 +27,7 @@ export function MyVitaShell({ children }: { children: React.ReactNode }) {
       const timer = window.setTimeout(() => { setSplash(false); sessionStorage.setItem('myvita-welcomed', 'yes'); }, 2200);
       return () => window.clearTimeout(timer);
     }
+    return undefined;
   }, []);
   useEffect(() => { document.documentElement.classList.toggle('dark', dark); }, [dark]);
   function toggleTheme() { setDark(previous => { localStorage.setItem('myvita-theme', previous ? 'light' : 'dark'); return !previous; }); }
