@@ -11,7 +11,7 @@ export const profileSchema = z.object({
  activity_level: z.enum(['sedentary','light','moderate','active']),
  existing_conditions: z.array(z.enum(conditions)).max(5).refine(v => !v.includes('none') || v.length === 1, 'Select None on its own'),
  family_history: z.array(z.enum(familyConditions)).max(3),
- consent_accepted: z.literal(true, { error: 'Consent is required' }),
+ consent_accepted: z.literal(true),
 });
 export type ProfileInput = z.infer<typeof profileSchema>;
 export function calculateBMI(height: number, weight: number, age: number) {
